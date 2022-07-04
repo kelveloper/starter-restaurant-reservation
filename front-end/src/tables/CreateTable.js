@@ -29,13 +29,11 @@ export default function CreateTable(){
         const abortController = new AbortController();
         e.preventDefault();
         const validated = validateTable(newTable, errors);
-        console.log(validated,errors)
         if(validated){
             setErrors({...errors})
             return errors.messages;
         };
         // filling and submitting form creates a new reservation
-        console.log(newTable)
         await createTable( newTable, abortController.signal)
         .then(() => {history.replace(`/dashboard`)})
         .catch(setTableError)
